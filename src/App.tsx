@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
-import "./App.css";
+import Header from "./components/common/Header";
 
 function App() {
     return (
-        <Button variant="contained" color="primary">
-            Hello World
-        </Button>
+        <>
+            <Header />
+            <Button variant="contained" color="primary">
+                Hello World
+            </Button>
+        </>
     );
 }
 
