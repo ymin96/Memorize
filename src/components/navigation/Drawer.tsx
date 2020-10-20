@@ -13,6 +13,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { grey } from "@material-ui/core/colors";
+import { Hidden } from "@material-ui/core";
 
 const useStyles = makeStyles({
     list: {
@@ -29,14 +30,8 @@ export default function TemporaryDrawer() {
     const classes = useStyles();
     const [state, setState] = React.useState(false);
 
-    const toggleDrawer = (open: boolean) => (
-        event: React.KeyboardEvent | React.MouseEvent
-    ) => {
-        if (
-            event.type === "keydown" &&
-            ((event as React.KeyboardEvent).key === "Tab" ||
-                (event as React.KeyboardEvent).key === "Shift")
-        ) {
+    const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (event.type === "keydown" && ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")) {
             return;
         }
 
@@ -44,31 +39,22 @@ export default function TemporaryDrawer() {
     };
 
     const list = () => (
-        <div
-            className={clsx(classes.list)}
-            role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-        >
-            <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map(
-                    (text, index) => (
+        <div className={clsx(classes.list)} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+            <Hidden smUp>
+                <List>
+                    {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
-                    )
-                )}
-            </List>
-            <Divider />
+                    ))}
+                </List>
+                <Divider />
+            </Hidden>
             <List>
-                {["All mail", "Trash", "Spam"].map((text, index) => (
+                {["내 정보", "즐겨찾기", "Spam"].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
@@ -78,12 +64,8 @@ export default function TemporaryDrawer() {
 
     return (
         <div>
-            <IconButton
-                color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
-            >
-                <MenuIcon style={{ color: grey[500] }}/>
+            <IconButton color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+                <MenuIcon style={{ color: grey[500] }} />
             </IconButton>
             <Drawer anchor={"right"} open={state} onClose={toggleDrawer(false)}>
                 {list()}

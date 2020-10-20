@@ -7,4 +7,4 @@ export default {
     component: Drawer,
 } as Meta;
 
-export const Primary: React.SFC<{}> = () => <Drawer/>;
+export const Primary = () => <Drawer/>;

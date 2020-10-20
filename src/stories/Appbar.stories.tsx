@@ -1,10 +1,20 @@
-import React from 'react';
+import React from "react";
 import { Story, Meta } from "@storybook/react";
-import Appbar from "../components/common/Header";
+import Header, { HeaderProps } from "../components/common/Header";
 
 export default {
-    title: 'Project/Navbar',
-    component: Appbar,
+    title: "Project/Navbar",
+    component: Header,
 } as Meta;
 
-export const Primary = () => <Appbar/>;
+const Template: Story<HeaderProps> = (args) => <Header {...args} />;
+
+export const LogIn = Template.bind({});
+LogIn.args = {
+    isLogIn: true,
+};
+
+export const LogOut = Template.bind({});
+LogOut.args = {
+    isLogIn: false,
+};

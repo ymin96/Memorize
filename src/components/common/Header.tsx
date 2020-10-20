@@ -24,7 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function ButtonAppBar() {
+export type HeaderProps = {
+    isLogIn: boolean;
+};
+
+export default function Header({ isLogIn }: HeaderProps) {
     const classes = useStyles();
 
     return (
@@ -44,9 +48,13 @@ export default function ButtonAppBar() {
                                 </Grid>
                             </Hidden>
                             <Grid container justify="flex-end" item sm xs>
-                                <Button variant="outlined" style={{color:grey[500]}}>
-                                    Sign In
-                                </Button>
+                                {isLogIn ? (
+                                    <Drawer />
+                                ) : (
+                                    <Button variant="outlined" style={{ color: grey[500] }}>
+                                        Sign In
+                                    </Button>
+                                )}
                             </Grid>
                         </Grid>
                     </Container>
@@ -55,3 +63,7 @@ export default function ButtonAppBar() {
         </div>
     );
 }
+
+Header.defaultProps = {
+    isLogIn: false,
+};
