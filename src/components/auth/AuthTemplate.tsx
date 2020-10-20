@@ -34,7 +34,7 @@ function AuthTemplate({ children }: AuthTemplateProps) {
                         <Typography variant="h6" align="center" paragraph>
                             Sign In
                         </Typography>
-                        <Paper className={classes.form}>{children}</Paper>
+                        <Paper elevation={5} className={classes.form}>{children}</Paper>
                     </Grid>
                 </Grid>
             </Container>
