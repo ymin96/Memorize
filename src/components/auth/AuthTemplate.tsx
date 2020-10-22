@@ -31,7 +31,7 @@ function AuthTemplate({ children }: AuthTemplateProps) {
                         <Grid item style={{textAlign: "center"}}>
                             <AccountIcon style={{ fontSize: 40 }} />
                         </Grid>
-                        <Typography variant="h6" align="center" paragraph>
+                        <Typography variant="h5" align="center" paragraph>
                             Sign In
                         </Typography>
                         <Paper elevation={5} className={classes.form}>{children}</Paper>
