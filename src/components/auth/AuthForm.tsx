@@ -17,17 +17,12 @@ const useStyles = makeStyles((theme: Theme) =>
             flexWrap: "wrap",
         },
         marginVertical: {
-            margin: "4px 0",
-        },
-        paddingVertical: {
-            [theme.breakpoints.up("sm")]: {
-                padding: "0 2ch",
-            },
+            margin: "6px 0",
         },
         submit: {
             [theme.breakpoints.up("sm")]: {
-                width: "100px",
-                height: "100px",
+                width: "90.9%",
+                height: "88.5%",
             },
             [theme.breakpoints.down("sm")]: {
                 width: "100%",
@@ -50,7 +45,7 @@ function AuthForm() {
     return (
         <AuthTemplate>
             <div className={classes.root}>
-                <Grid container className={classes.paddingVertical}>
+                <Grid container>
                     <Grid
                         item
                         container
@@ -81,7 +76,7 @@ function AuthForm() {
                         item
                         container
                         alignItems="center"
-                        justify="center"
+                        justify="flex-end"
                         md={3}
                         sm={12}
                     >
@@ -98,6 +93,16 @@ function AuthForm() {
                         <Button
                             variant="contained"
                             color="secondary"
+                            disableElevation
+                            className={`${classes.button} ${classes.marginVertical}`}
+                        >
+                            Google
+                        </Button>
+                    </Grid>
+                    <Grid item container sm={12} md={12}>
+                        <Button
+                            variant="contained"
+                            color="primary"
                             disableElevation
                             className={`${classes.button} ${classes.marginVertical}`}
                         >

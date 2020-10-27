@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
             color: "#1b1642",
         },
         form: {
-            padding: "2rem",
+            padding: "38px 5.5%",
         },
     })
 );
