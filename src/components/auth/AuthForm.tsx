@@ -5,7 +5,6 @@ import {
     createStyles,
     TextField,
     Theme,
-    Container,
     Grid,
     Button,
 } from "@material-ui/core";
@@ -36,6 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         button: {
             width: "100%",
+            backgroundColor: theme.palette.naver.main,
         },
     })
 );
@@ -102,7 +102,7 @@ function AuthForm() {
                     <Grid item container sm={12} md={12}>
                         <Button
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             disableElevation
                             className={`${classes.button} ${classes.marginVertical}`}
                         >
