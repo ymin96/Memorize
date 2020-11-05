@@ -7,7 +7,9 @@ import {
     Theme,
     Grid,
     Button,
+    Typography,
 } from "@material-ui/core";
+import { green } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -35,10 +37,14 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         button: {
             width: "100%",
-            backgroundColor: theme.palette.naver.main,
         },
+        typography: {
+            margin: '10px 0'
+        }
     })
 );
+
+
 function AuthForm() {
     const classes = useStyles();
 
@@ -89,14 +95,16 @@ function AuthForm() {
                             Submit
                         </Button>
                     </Grid>
+                    <Typography variant="body1" className={classes.typography} align="center">회원이 아니신가요?</Typography>
                     <Grid item container sm={12} md={12}>
                         <Button
                             variant="contained"
                             color="secondary"
                             disableElevation
                             className={`${classes.button} ${classes.marginVertical}`}
+                            style={{backgroundColor: '#E34133'}}
                         >
-                            Google
+                            Google 로그인
                         </Button>
                     </Grid>
                     <Grid item container sm={12} md={12}>
@@ -105,8 +113,9 @@ function AuthForm() {
                             color="secondary"
                             disableElevation
                             className={`${classes.button} ${classes.marginVertical}`}
+                            style={{backgroundColor: '#19ce60'}}
                         >
-                            Naver
+                            Naver 로그인
                         </Button>
                     </Grid>
                 </Grid>
