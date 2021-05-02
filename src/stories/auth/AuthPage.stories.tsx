@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from "@storybook/react";
-import AuthPage from "../components/page/AuthPage";
+import AuthPage from "../../components/page/AuthPage";
 
 export default {
     title: "Project/Page",
