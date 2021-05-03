@@ -1,4 +1,4 @@
-import { Box, createStyles, Grid, makeStyles, Paper, Theme, Typography } from "@material-ui/core";
+import { Box, Card, CardActionArea, createStyles, Grid, makeStyles, Paper, Theme, Typography } from "@material-ui/core";
 import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -8,12 +8,9 @@ const useStyles = makeStyles((theme: Theme) =>
             maxWidth: 300,
             maxHeight: 188,
         },
-        paper: {
+        cardAction: {
             padding: theme.spacing(1),
             margin: "auto",
-            '&:hover':{
-                background: '#F7F7F7',
-            }
         },
         img: {
             margin: "auto",
@@ -47,23 +44,25 @@ const MovieItem = ({ image_url, title, script_count }: MovieItemProps) => {
 
     return (
         <Grid className={classes.root} item>
-            <Paper className={classes.paper} elevation={2}>
-                <Grid container spacing={2} direction="row">
-                    <Grid item>
-                        <Box className={classes.image}>
-                            <img className={classes.img} src={image_url} alt={"이미지 에러"} />
-                        </Box>
-                    </Grid>
-                    <Grid item xs sm md container>
-                        <Grid item sm container direction="column">
-                            <Grid item xs>
-                                <Typography className={classes.title}>{title}</Typography>
-                                <Typography className={classes.script_count}>자막 수:{script_count}</Typography>
+            <Card>
+                <CardActionArea className={classes.cardAction}>
+                    <Grid container spacing={2} direction="row">
+                        <Grid item>
+                            <Box className={classes.image}>
+                                <img className={classes.img} src={image_url} alt={"이미지 에러"} />
+                            </Box>
+                        </Grid>
+                        <Grid item xs sm md container>
+                            <Grid item sm container direction="column">
+                                <Grid item xs>
+                                    <Typography className={classes.title}>{title}</Typography>
+                                    <Typography className={classes.script_count}>자막 수:{script_count}</Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-            </Paper>
+                </CardActionArea>
+            </Card>
         </Grid>
     );
 };

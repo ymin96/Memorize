@@ -6,7 +6,9 @@ import React from "react";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
+            paddingTop: 30,
             minHeight: 650,
+            backgroundColor: '#f8f8f8'
         },
     })
 );
