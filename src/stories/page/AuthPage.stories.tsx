@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import AuthPage from "../../components/page/AuthPage";
 
 export default {
-    title: "Project/Page",
+    title: "Project/AuthPage",
     component: AuthPage,
 } as Meta;
 
