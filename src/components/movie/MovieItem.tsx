@@ -5,11 +5,11 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             flexGrow: 1,
-            maxWidth: 300,
+            maxWidth: 285,
             maxHeight: 188,
+            margin: "auto"
         },
         cardAction: {
-            padding: theme.spacing(1),
             margin: "auto",
         },
         img: {
@@ -19,15 +19,15 @@ const useStyles = makeStyles((theme: Theme) =>
             maxHeight: "100%",
         },
         image: {
-            width: 105,
-            height: 149,
+            width: 100,
+            height: "100%",
             WebkitPerspective: 1,
         },
         title: {
-            fontSize: 24,
+            fontSize: 22,
         },
         script_count: {
-            fontSize: 18,
+            fontSize: 16,
             color: "#646464",
         },
     })

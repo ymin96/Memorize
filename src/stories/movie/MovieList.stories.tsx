@@ -1,11 +1,10 @@
-import { Meta } from "@storybook/react";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
-import MovieList from "../../components/movie/MovieList";
-
+import MovieListContainer from "../../containers/movie/MovieListContainer";
 
 export default {
     title: "Project/MovieList",
-    component: MovieList,
+    component: MovieListContainer,
 } as Meta;
 
-export const movieList = () => <MovieList/>
+export const movies = () => <MovieListContainer />;
