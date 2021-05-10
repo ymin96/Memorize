@@ -6,37 +6,37 @@ export const getMovies = (page: number) => ({
     type: GET_MOVIES,
     payload: [
         {
-            key: 1,
+            id: 1,
             image_url: "https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
             title: "Avengers Endgame",
             script_count: 30,
         },
         {
-            key: 2,
+            id: 2,
             image_url: "https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
             title: "Avengers Endgame",
             script_count: 145,
         },
         {
-            key: 3,
+            id: 3,
             image_url: "https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
             title: "Avengers Endgame",
             script_count: 145,
         },
         {
-            key: 3,
+            id: 3,
             image_url: "https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
             title: "Avengers Endgame",
             script_count: 145,
         },
         {
-            key: 3,
+            id: 3,
             image_url: "https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
             title: "Avengers Endgame",
             script_count: 145,
         },
         {
-            key: 3,
+            id: 3,
             image_url: "https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
             title: "Avengers Endgame",
             script_count: 145,
@@ -47,7 +47,7 @@ export const getMovies = (page: number) => ({
 type MoviesAction = ReturnType<typeof getMovies>;
 
 export type Movie = {
-    key : number,
+    id : number,
     title: string;
     image_url: string;
     script_count: number;
