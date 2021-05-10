@@ -56,7 +56,7 @@ const MovieItem = ({ image_url, title, script_count }: MovieItemProps) => {
                             <Grid item sm container direction="column">
                                 <Grid item xs>
                                     <Typography className={classes.title}>{title}</Typography>
-                                    <Typography className={classes.script_count}>자막 수:{script_count}</Typography>
+                                    <Typography className={classes.script_count}>contents:{script_count}</Typography>
                                 </Grid>
                             </Grid>
                         </Grid>

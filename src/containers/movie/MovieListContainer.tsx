@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieList from "../../components/movie/MovieList";
 import { RootState } from "../../modules";
-import { getMovies } from "../../modules/Movies";
+import { getMovies } from "../../modules/movies";
 
 const MovieListContainer = () => {
     const movies = useSelector((state: RootState) => state.movies);
