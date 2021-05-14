@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieList from "../../components/movie/MovieList";
 import { RootState } from "../../modules";
-import { getMovies } from "../../modules/movies";
+import { getMoviesThunk } from "../../modules/movies";
 
 const MovieListContainer = () => {
-    const movies = useSelector((state: RootState) => state.movies);
+    const {data, loading, error} = useSelector((state:RootState) => state.movies.moviesFile);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getMovies(1));
+        dispatch(getMoviesThunk(1, null, 16));
     }, []);
 
     return (
         <>
-            <MovieList movies={movies} />
+            {data && <MovieList movies={data.movie_list} />}
         </>
     );
 };

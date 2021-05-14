@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             maxWidth: 285,
             maxHeight: 188,
-            margin: "auto"
+            margin: "auto",
         },
         cardAction: {
             margin: "auto",
@@ -15,12 +15,13 @@ const useStyles = makeStyles((theme: Theme) =>
         img: {
             margin: "auto",
             display: "block",
-            maxWidth: "100%",
-            maxHeight: "100%",
+            width: 100,
+            height: 141,
+            objectFit: "cover",
         },
         image: {
             width: 100,
-            height: "100%",
+            height: 141,
             WebkitPerspective: 1,
         },
         title: {
@@ -48,9 +49,7 @@ const MovieItem = ({ image_url, title, script_count }: MovieItemProps) => {
                 <CardActionArea className={classes.cardAction}>
                     <Grid container spacing={2} direction="row">
                         <Grid item>
-                            <Box className={classes.image}>
-                                <img className={classes.img} src={image_url} alt={"이미지 에러"} />
-                            </Box>
+                            <img className={classes.img} src={image_url} alt={"이미지 에러"} />
                         </Grid>
                         <Grid item xs sm md container>
                             <Grid item sm container direction="column">

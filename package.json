@@ -21,6 +21,7 @@
     "react-scripts": "3.4.3",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
+    "typesafe-actions": "^5.1.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
