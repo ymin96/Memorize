@@ -9,17 +9,15 @@ export type MovieListProps = {
 };
 
 const MovieList = ({ movies }: MovieListProps) => {
-
     return (
         <ItemList>
             {movies.map((movie, index) => (
                 <GridListTile key={index} cols={1}>
-                    <MovieItem title={movie.e_title} script_count={100} image_url={movie.thumbnail} />
+                    <MovieItem movie_id={movie.id} title={movie.e_title} script_count={100} image_url={movie.thumbnail} />
                 </GridListTile>
             ))}
         </ItemList>
     );
-
 };
 
 export default MovieList;

@@ -65,10 +65,10 @@ export default function ScrollableTabsButtonAuto() {
             aria-label="simple tabs example"
             classes = {{indicator: classes.indicator}}
         >
-            <Tab label="Item One" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
-            <Tab label="Item Four" {...a11yProps(3)} />
+            <Tab key={0} label="Item One" {...a11yProps(0)} />
+            <Tab key={1} label="Item Two" {...a11yProps(1)} />
+            <Tab key={2} label="Item Three" {...a11yProps(2)} />
+            <Tab key={3} label="Item Four" {...a11yProps(3)} />
         </Tabs>
     );
 }
