@@ -11,6 +11,18 @@ export async function getMoviesFile(offset: number, title: string | null, limit:
     return response.data;
 }
 
+export async function getScriptsFile(movie_id:number, word:string | null, offset:number, limit:number){
+    let response: AxiosResponse<ScriptListPage>;
+
+    if(word == null){
+        response = await axios.get<ScriptListPage>(`http://127.0.0.1:8080/scripts/${movie_id}?offset=${offset}&limit=${limit}`);
+    }else{
+        response = await axios.get<ScriptListPage>(`http://127.0.0.1:8080/scripts/${movie_id}?offset=${offset}&limit=${limit}&word=${word}`);
+    }
+
+    return response.data;
+}
+
 export interface Movie {
     id: number;
     k_title: string;

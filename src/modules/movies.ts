@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { ThunkAction } from "redux-thunk";
-import { action, createAction, createReducer } from "typesafe-actions";
+import { createAction, createReducer } from "typesafe-actions";
 import { RootState } from ".";
 import { getMoviesFile, MovieListPage } from "../api/memorize";
 
@@ -45,7 +45,7 @@ const initialState: MoviePageState = {
 };
 
 const movies = createReducer<MoviePageState, MoviesAction>(initialState, {
-    [GET_MOVIES_ERROR]: (state) => ({
+    [GET_MOVIES]: (state) => ({
         ...state,
         moviesFile: {
             loading: true,

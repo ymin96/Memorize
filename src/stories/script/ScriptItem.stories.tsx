@@ -11,7 +11,7 @@ const Template: Story<ScriptItemProps> = (args) => <ScriptItem {...args} />;
 
 export const scriptItem = Template.bind({});
 scriptItem.args = {
-    key : 1,
+    id : 1,
     image_url : "http://localhost:8080/script/thumbnail/3",
     script : "contents is asdfasdfasdf",
 }

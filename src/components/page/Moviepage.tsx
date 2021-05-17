@@ -1,12 +1,23 @@
-import React from 'react';
-import MovieListContainer from '../../containers/movie/MovieListContainer';
-import Header from '../common/Header';
+import React from "react";
+import { RouteComponentProps } from "react-router";
+import MovieListContainer from "../../containers/movie/MovieListContainer";
+import Header from "../common/Header";
+import BodyWrap from "../common/BobyWrap";
 
-const Moviepage = () => {
+export type MoviePageProps = {
+    page: string;
+};
+
+const Moviepage = ({ match }: RouteComponentProps<MoviePageProps>) => {
+
+    const {page} = match.params
+
     return (
         <div>
             <Header/>
-            <MovieListContainer/>
+            <BodyWrap>
+                <MovieListContainer page={page}/>
+            </BodyWrap>
         </div>
     );
 };

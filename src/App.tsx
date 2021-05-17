@@ -1,14 +1,15 @@
 import React from "react";
-import Header from "./components/common/Header";
 import theme from './components/common/Theme';
 import {MuiThemeProvider } from "@material-ui/core/styles";
-import MovieListContainer from "./containers/movie/MovieListContainer";
+import MoviePage from "./components/page/MoviePage";
+import ScriptPage from "./components/page/ScriptPage";
+import { Route } from "react-router-dom";
 
 function App() {
     return (
         <MuiThemeProvider theme={theme}>
-            <Header />
-            <MovieListContainer/>
+            <Route path="/movies/:page" component={MoviePage}/>
+            <Route path="/scripts/:movie_id/:page" component={ScriptPage}/>
         </MuiThemeProvider>
     );
 }

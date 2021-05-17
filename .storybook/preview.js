@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import rootReducer from "../src/modules";
-import theme from '../src/components/common/Theme'
-import { MuiThemeProvider } from '@material-ui/core';
-import thunk from 'redux-thunk';
+import theme from "../src/components/common/Theme";
+import { MuiThemeProvider } from "@material-ui/core";
+import thunk from "redux-thunk";
+import { BrowserRouter } from "react-router-dom";
 
 export const parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },
@@ -16,7 +17,9 @@ export const decorators = [
     (Story) => (
         <Provider store={store}>
             <MuiThemeProvider theme={theme}>
-                <Story/>
+                <BrowserRouter>
+                    <Story />
+                </BrowserRouter>
             </MuiThemeProvider>
         </Provider>
     ),
