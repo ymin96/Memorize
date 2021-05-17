@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PaginationLink from "../../components/common/PaginationLink";
 import SearchInput from "../../components/common/SearchInput";
@@ -16,17 +16,16 @@ const ScriptListContainer = ({movie_id, page}:ScriptListContainerProps) => {
     const { data, loading, error } = useSelector((state: RootState) => state.scripts.scriptsFile);
     const dispatch = useDispatch();
 
-    const [input,setInput] = useState<string | null>(null);
+    const [input,setInput] = useState<string | undefined>(undefined);
+    const searchRef = useRef<HTMLInputElement>(null);
 
-    const onChange = (e:  React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setInput(e.target.value)
+
+
+    const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        setInput(searchRef.current?.value);
+        dispatch(getScriptsThunk(parseInt(movie_id), input, 1, 16));
         console.log(input);
     }
-
-    const onSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
-        dispatch(getScriptsThunk(parseInt(movie_id), input, parseInt(page), 16));
-    }
-
 
     useEffect(() => {
         dispatch(getScriptsThunk(parseInt(movie_id), input, parseInt(page), 16));
@@ -36,7 +35,7 @@ const ScriptListContainer = ({movie_id, page}:ScriptListContainerProps) => {
         <div>
             {data && (
                 <>
-                    <SearchInput onChange={onChange} onSubmit={onSubmit}/>
+                    <SearchInput onClick={onClick} searchRef={searchRef}/>
                     <ScriptList scripts={data.script_list} />
                     <PaginationLink page={parseInt(page)} limit={data.last_page} prefix_url={"/scripts/"+ movie_id +"/"} />
                 </>

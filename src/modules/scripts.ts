@@ -14,7 +14,7 @@ export const getScripts = createAction(GET_SCRIPTS)();
 export const getScriptsSuccess = createAction(GET_SCRIPTS_SUCCESS)<ScriptListPage>();
 export const getScriptsError = createAction(GET_SCRIPTS_ERROR)<AxiosError>();
 
-export function getScriptsThunk(movie_id:number, word: string|null = null, offset:number = 1, limit: number = 16): ThunkAction<void, RootState, null, ScriptsAction>{
+export function getScriptsThunk(movie_id:number, word: string|null|undefined = undefined, offset:number = 1, limit: number = 16): ThunkAction<void, RootState, null, ScriptsAction>{
     return async (dispatch) => {
         dispatch(getScripts());
         try{

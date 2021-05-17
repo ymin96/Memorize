@@ -11,10 +11,10 @@ export async function getMoviesFile(offset: number, title: string | null, limit:
     return response.data;
 }
 
-export async function getScriptsFile(movie_id:number, word:string | null, offset:number, limit:number){
+export async function getScriptsFile(movie_id:number, word:string | null | undefined, offset:number, limit:number){
     let response: AxiosResponse<ScriptListPage>;
 
-    if(word == null){
+    if(word === null || word === undefined){
         response = await axios.get<ScriptListPage>(`http://127.0.0.1:8080/scripts/${movie_id}?offset=${offset}&limit=${limit}`);
     }else{
         response = await axios.get<ScriptListPage>(`http://127.0.0.1:8080/scripts/${movie_id}?offset=${offset}&limit=${limit}&word=${word}`);

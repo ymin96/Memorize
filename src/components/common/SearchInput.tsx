@@ -4,7 +4,6 @@ import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import { VoidExpression } from "typescript";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -26,17 +25,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type SearchInputProps = {
-    onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-    onSubmit: React.FormEventHandler<HTMLButtonElement>;
+    onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    searchRef: React.RefObject<HTMLInputElement>;
 };
 
-const SearchInput = ({ onChange, onSubmit }: SearchInputProps) => {
+const SearchInput = ({ onChange, onClick, searchRef }: SearchInputProps) => {
     const classes = useStyles();
 
     return (
         <Paper component="form" className={classes.root}>
-            <InputBase className={classes.input} onChange={onChange} />
-            <IconButton type="submit" className={classes.iconButton} aria-label="search" onSubmit={onSubmit}>
+            <InputBase className={classes.input} onChange={onChange} inputRef={searchRef} />
+            <IconButton type="submit" className={classes.iconButton} aria-label="search" onClick={onClick}>
                 <SearchIcon />
             </IconButton>
         </Paper>
