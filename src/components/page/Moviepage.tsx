@@ -8,7 +8,7 @@ export type MoviePageProps = {
     page: string;
 };
 
-const Moviepage = ({ match }: RouteComponentProps<MoviePageProps>) => {
+const MoviePage = ({ match }: RouteComponentProps<MoviePageProps>) => {
 
     const {page} = match.params
 
@@ -16,10 +16,10 @@ const Moviepage = ({ match }: RouteComponentProps<MoviePageProps>) => {
         <div>
             <Header/>
             <BodyWrap>
-                <MovieListContainer page={page}/>
+                <MovieListContainer  page={page}/>
             </BodyWrap>
         </div>
     );
 };
 
-export default Moviepage;
+export default MoviePage;

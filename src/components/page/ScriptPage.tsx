@@ -9,14 +9,14 @@ export type ScriptPageParams = {
     page: string;
 };
 
-const ScriptPage = ({ match }: RouteComponentProps<ScriptPageParams>) => {
+const ScriptPage = ({ match, history }: RouteComponentProps<ScriptPageParams>) => {
     const { movie_id, page } = match.params;
-
+    
     return (
         <div>
             <Header />
             <BodyWrap>
-                <ScriptListContainer movie_id={movie_id} page={page}/>
+                <ScriptListContainer movie_id={movie_id} page={page} />
             </BodyWrap>
         </div>
     );
