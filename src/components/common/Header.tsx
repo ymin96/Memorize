@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         header: {
             backgroundColor: "white",
-            borderBottom: "2px solid #eeeeee",
+            borderBottom: `2px solid ${theme.palette.primary.main}`,
             boxShadow: "none",
         },
     })

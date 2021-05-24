@@ -2,7 +2,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 
 const palette = {
-    primary: { main: "#3f51b5", naver: green[400] },
+    primary: { main: "#4C85F3" },
     secondary: { main: "#f50057" },
     naver: { main: green[400] },
 };

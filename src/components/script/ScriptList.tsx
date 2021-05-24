@@ -13,7 +13,7 @@ const ScriptList = ({scripts}:ScriptListProps) => {
         <ItemList>
             {scripts.map((script) => (
                 <GridListTile key={script.id} cols={1}>
-                    <ScriptItem id={script.id} image_url={script.thumbnail} script={script.caption}/>
+                    <ScriptItem script={script}/>
                 </GridListTile>
             ))}
         </ItemList>

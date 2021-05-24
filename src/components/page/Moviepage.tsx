@@ -9,15 +9,11 @@ export type MoviePageProps = {
 };
 
 const MoviePage = ({ match }: RouteComponentProps<MoviePageProps>) => {
-
-    const {page} = match.params
+    const { page } = match.params;
 
     return (
         <div>
-            <Header/>
-            <BodyWrap>
-                <MovieListContainer  page={page}/>
-            </BodyWrap>
+            <MovieListContainer page={page} />
         </div>
     );
 };

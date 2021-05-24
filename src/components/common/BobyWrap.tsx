@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             backgroundColor: "#f8f8f8",
+            minHeight: 650,
         },
     })
 );
@@ -18,9 +19,11 @@ const BobyWrap = ({ children }: BodyWrapProps) => {
 
     return (
         <div className={classes.root}>
-            <Container>{children}</Container>
+            <Container>
+                {children}
+            </Container>
         </div>
     );
 };
 
-export default BobyWrap;
+export default React.memo(BobyWrap);

@@ -29,12 +29,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type SearchInputProps = {
-    onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
     onClick: React.MouseEventHandler<HTMLButtonElement>;
     searchRef: React.Ref<HTMLInputElement>;
 };
 
-const SearchInput = ({ onChange, onClick, searchRef }: SearchInputProps) => {
+const SearchInput = ({ onClick, searchRef }: SearchInputProps) => {
     const classes = useStyles();
 
     return (
@@ -43,7 +42,6 @@ const SearchInput = ({ onChange, onClick, searchRef }: SearchInputProps) => {
                 <Paper component="form" className={classes.root}>
                     <InputBase
                         className={classes.input}
-                        onChange={onChange}
                         inputRef={searchRef}
                     />
                     <IconButton
@@ -60,4 +58,4 @@ const SearchInput = ({ onChange, onClick, searchRef }: SearchInputProps) => {
     );
 };
 
-export default SearchInput;
+export default React.memo(SearchInput);

@@ -1,5 +1,8 @@
 import { createStyles, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Script } from "../../api/memorize";
+import ScriptDialog from "../dialog/ScriptDialog";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -28,24 +31,44 @@ const useStyles = makeStyles((theme: Theme) =>
             whiteSpace: "nowrap",
             width: 228,
         },
+        default_link: {
+            textDecoration: "none !important",
+            color: "black",
+        },
     })
 );
 
 export type ScriptItemProps = {
-    id: number;
-    image_url: string;
-    script: string;
+    script: Script;
 };
 
-const ScriptItem = ({ id, image_url, script }: ScriptItemProps) => {
+const ScriptItem = ({ script }: ScriptItemProps) => {
     const classes = useStyles();
+
+    const [open, setOpen] = useState(false);
+
+    const itemClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        setOpen(true);
+    };
+
+    const dialogOpen = () => {
+        setOpen(true);
+    };
+
+    const dialogClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Grid item className={classes.root}>
-            <Grid className={classes.image}>
-                <img className={classes.img} src={"http://127.0.0.1:8080/script/thumbnail/" + id} alt={"이미지 에러"} />
-            </Grid>
-            <Typography className={classes.script}>{script}</Typography>
+            <Link to="#" onClick={itemClick} className={classes.default_link}>
+                <Grid className={classes.image}>
+                    <img className={classes.img} src={"http://127.0.0.1:8080/script/thumbnail/" + script.id} alt={"이미지 에러"} />
+                </Grid>
+                <Typography className={classes.script}>{script.caption}</Typography>
+            </Link>
+            <ScriptDialog open={open} script={script} dialogOpen={dialogOpen} dialogClose={dialogClose}/>
         </Grid>
     );
 };

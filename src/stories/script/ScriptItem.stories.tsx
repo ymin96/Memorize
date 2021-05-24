@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/react';
-import React from 'react';
-import ScriptItem, { ScriptItemProps } from '../../components/script/ScriptItem';
+import { Meta, Story } from "@storybook/react";
+import React from "react";
+import ScriptItem, { ScriptItemProps } from "../../components/script/ScriptItem";
 
 export default {
     title: "Project/ScriptItem",
@@ -11,7 +11,12 @@ const Template: Story<ScriptItemProps> = (args) => <ScriptItem {...args} />;
 
 export const scriptItem = Template.bind({});
 scriptItem.args = {
-    id : 1,
-    image_url : "http://localhost:8080/script/thumbnail/3",
-    script : "contents is asdfasdfasdf",
-}
+    script: {
+        id: 1,
+        caption: "contents is asdfasdfasdf",
+        movie_id: 1,
+        start_second: 1,
+        end_second: 1,
+        thumbnail: "1",
+    },
+};
