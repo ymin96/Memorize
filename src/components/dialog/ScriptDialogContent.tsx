@@ -1,6 +1,7 @@
-import { Chip, createStyles, DialogContent, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
+import { Chip, createStyles, DialogContent, Grid, GridTypeMap, makeStyles, Theme, Typography, useTheme } from "@material-ui/core";
+import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { Skeleton } from "@material-ui/lab";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Script } from "../../api/memorize";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -8,6 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             margin: 0,
             padding: theme.spacing(2),
+            paddingTop: 0,
         },
         chipDiv: {
             display: "flex",
@@ -32,12 +34,9 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             color: "white",
             cursor: "default",
-            '&:hover':{
+            "&:hover": {
                 color: theme.palette.primary.main,
-                '$hintWrap':{
-                    backgroundColor: "white"
-                }
-            }
+            },
         },
         hintWord: {
             flexGrow: 1,
@@ -69,23 +68,38 @@ function divideScript(script: string): ChipData[] {
 const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
     const classes = useStyles();
     const [words, setWords] = useState<ChipData[]>(divideScript(script.caption));
+    const hintWrapGrid = useRef<HTMLDivElement>(null);
+    const theme = useTheme();
 
     const handleToggle = (chipToToggle: ChipData) => () => {
         setWords((chips) => chips.map((chip) => (chip.key === chipToToggle.key ? { ...chip, active: !chip.active } : chip)));
+    };
+
+    //Show 에 mouseOver시 hintWrap의 backgroundColor 변경 
+    const hintMouseHover = (e: React.MouseEvent<HTMLSpanElement>) => {
+        if (hintWrapGrid.current) {
+            hintWrapGrid.current.style.backgroundColor = "white";
+        }
+    };
+    //Show 에 mouseLeave시 hintWrap의 backgroundColor 변경 
+    const hintMouseLeave = (e: React.MouseEvent<HTMLSpanElement>) => {
+        if (hintWrapGrid.current) {
+            hintWrapGrid.current.style.backgroundColor = theme.palette.primary.main;
+        }
     };
 
     return (
         <DialogContent className={classes.root}>
             <Skeleton variant="rect" width={730} height={410} style={{ marginBottom: 5 }} />
 
-            <Grid container className={classes.hintWrap}>
+            <Grid container className={classes.hintWrap} ref={hintWrapGrid}>
                 <Grid container item xs={10} style={{ alignItems: "center" }}>
                     <Typography variant="h6" className={classes.hintWord}>
                         {script.caption}
                     </Typography>
                 </Grid>
                 <Grid container item xs={2} style={{ alignItems: "center" }}>
-                    <Typography variant="h6" align="center" className={classes.hintShow}>
+                    <Typography onMouseOver={hintMouseHover} onMouseLeave={hintMouseLeave} variant="h6" align="center" className={classes.hintShow}>
                         Show
                     </Typography>
                 </Grid>

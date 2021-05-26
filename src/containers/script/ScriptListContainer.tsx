@@ -24,6 +24,7 @@ const ScriptListContainer = ({ movie_id, page , history}: ScriptListContainerPro
 
     
     const onClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         setInput(searchRef.current?.value);
         history.push("/scripts/"+ movie_id + "/1")
         console.log(input);
