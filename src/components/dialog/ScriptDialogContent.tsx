@@ -1,7 +1,7 @@
-import { Chip, createStyles, DialogContent, Grid, GridTypeMap, makeStyles, Theme, Typography, useTheme } from "@material-ui/core";
-import { OverridableComponent } from "@material-ui/core/OverridableComponent";
+import { Button, Chip, createStyles, DialogContent, Grid, GridTypeMap, makeStyles, Theme, Typography, useTheme } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import React, { useRef, useState } from "react";
+import ReactPlayer from "react-player";
 import { Script } from "../../api/memorize";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             cursor: "default",
         },
+        video:{
+            
+        }
     })
 );
 
@@ -68,20 +71,26 @@ function divideScript(script: string): ChipData[] {
 const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
     const classes = useStyles();
     const [words, setWords] = useState<ChipData[]>(divideScript(script.caption));
+    const [answers, setAnswers] = useState<ChipData[]>([]);
     const hintWrapGrid = useRef<HTMLDivElement>(null);
     const theme = useTheme();
 
     const handleToggle = (chipToToggle: ChipData) => () => {
         setWords((chips) => chips.map((chip) => (chip.key === chipToToggle.key ? { ...chip, active: !chip.active } : chip)));
+        if (chipToToggle.active) {
+            setAnswers(answers.concat(chipToToggle));
+        } else {
+            setAnswers(answers.filter((chip) => chip.key !== chipToToggle.key));
+        }
     };
 
-    //Show 에 mouseOver시 hintWrap의 backgroundColor 변경 
+    //Show 에 mouseOver시 hintWrap의 backgroundColor 변경
     const hintMouseHover = (e: React.MouseEvent<HTMLSpanElement>) => {
         if (hintWrapGrid.current) {
             hintWrapGrid.current.style.backgroundColor = "white";
         }
     };
-    //Show 에 mouseLeave시 hintWrap의 backgroundColor 변경 
+    //Show 에 mouseLeave시 hintWrap의 backgroundColor 변경
     const hintMouseLeave = (e: React.MouseEvent<HTMLSpanElement>) => {
         if (hintWrapGrid.current) {
             hintWrapGrid.current.style.backgroundColor = theme.palette.primary.main;
@@ -90,7 +99,9 @@ const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
 
     return (
         <DialogContent className={classes.root}>
-            <Skeleton variant="rect" width={730} height={410} style={{ marginBottom: 5 }} />
+            <video controls className={classes.video} width={730}>
+                <source src ={`http://localhost:8080/script/stream/1`} type="video/webm"/>
+            </video>
 
             <Grid container className={classes.hintWrap} ref={hintWrapGrid}>
                 <Grid container item xs={10} style={{ alignItems: "center" }}>
@@ -121,6 +132,23 @@ const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
                     );
                 })}
             </ul>
+
+            <Grid container>
+                <Grid item sm={11}>
+                    <ul className={classes.chipDiv}>
+                        {answers?.map((value) => {
+                            return (
+                                <li key={value.key}>
+                                    <Chip label={value.label} clickable className={classes.chip} style={{ backgroundColor: "#ffffff" }} />
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </Grid>
+                <Grid item sm={1} container alignItems="center">
+                    <Button color="primary">Submit</Button>
+                </Grid>
+            </Grid>
         </DialogContent>
     );
 };
