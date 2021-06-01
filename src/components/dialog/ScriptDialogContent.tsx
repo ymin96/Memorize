@@ -1,5 +1,5 @@
-import { Button, Chip, createStyles, DialogContent, Grid, GridTypeMap, makeStyles, Theme, Typography, useTheme } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
+import { Button, Chip, createStyles, DialogContent, Grid, GridTypeMap, makeStyles, Snackbar, Theme, Typography, useTheme } from "@material-ui/core";
+import { Alert, Skeleton } from "@material-ui/lab";
 import React, { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import { Script } from "../../api/memorize";
@@ -16,6 +16,16 @@ const useStyles = makeStyles((theme: Theme) =>
             flexWrap: "wrap",
             listStyle: "none",
             paddingLeft: 0,
+        },
+        answerChipDiv: {
+            display: "flex",
+            flexWrap: "wrap",
+            listStyle: "none",
+            paddingLeft: 0,
+            margin: 0,
+            marginBottom: 15,
+            borderBottom: `1px solid ${theme.palette.primary.main}`,
+            height: 36,
         },
         chip: {
             margin: theme.spacing(0.5),
@@ -42,9 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             cursor: "default",
         },
-        video:{
-            
-        }
+        video: {},
     })
 );
 
@@ -73,6 +81,7 @@ const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
     const [words, setWords] = useState<ChipData[]>(divideScript(script.caption));
     const [answers, setAnswers] = useState<ChipData[]>([]);
     const hintWrapGrid = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
     const theme = useTheme();
 
     const handleToggle = (chipToToggle: ChipData) => () => {
@@ -97,10 +106,19 @@ const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
         }
     };
 
+    const videoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+        if (videoRef.current !== null) {
+            if (videoRef.current.currentTime >= script.end_second) {
+                videoRef.current.currentTime = script.start_second;
+                videoRef.current.pause();
+            }
+        }
+    };
+
     return (
         <DialogContent className={classes.root}>
-            <video controls className={classes.video} width={730}>
-                <source src ={`http://localhost:8080/script/stream/1`} type="video/webm"/>
+            <video controls className={classes.video} width={730} ref={videoRef} onTimeUpdate={videoTimeUpdate}>
+                <source src={`http://localhost:8080/script/stream/1#t=${script.start_second}`} type="video/webm" />
             </video>
 
             <Grid container className={classes.hintWrap} ref={hintWrapGrid}>
@@ -135,7 +153,7 @@ const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
 
             <Grid container>
                 <Grid item sm={11}>
-                    <ul className={classes.chipDiv}>
+                    <ul className={classes.answerChipDiv}>
                         {answers?.map((value) => {
                             return (
                                 <li key={value.key}>
@@ -149,6 +167,7 @@ const ScriptDialogContent = ({ script }: ScriptDialogContentProps) => {
                     <Button color="primary">Submit</Button>
                 </Grid>
             </Grid>
+            <Alert severity="error">This is an error message!</Alert>
         </DialogContent>
     );
 };
